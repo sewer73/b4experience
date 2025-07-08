@@ -19,20 +19,20 @@ interface TravelCardProps {
 
 const LevelIcon = ({ level }: { level: "beginner" | "intermediate" | "advanced" }) => {
   const levelConfig = {
-    beginner: { bars: [true, false, false, false], color: 'bg-green-400' },
-    intermediate: { bars: [true, true, false, false], color: 'bg-yellow-400' },
-    advanced: { bars: [true, true, true, false], color: 'bg-red-400' }
+    beginner: { activeIndex: 0, color: 'bg-green-400' },
+    intermediate: { activeIndex: 1, color: 'bg-yellow-400' },
+    advanced: { activeIndex: 2, color: 'bg-red-400' }
   };
 
   const config = levelConfig[level];
 
   return (
     <div className="flex items-end gap-0.5">
-      {config.bars.map((filled, index) => (
+      {[0, 1, 2, 3].map((index) => (
         <div
           key={index}
           className={`w-1 rounded-sm transition-colors ${
-            filled ? config.color : 'bg-white/30'
+            index <= config.activeIndex ? config.color : config.color.replace('400', '400/30')
           }`}
           style={{ height: `${(index + 1) * 3 + 4}px` }}
         />
@@ -65,8 +65,6 @@ export const TravelCard = ({
     setLikeCount(prev => liked ? prev - 1 : prev + 1);
   };
 
-  const discountPercentage = originalPrice ? Math.round(((originalPrice - price) / originalPrice) * 100) : 0;
-
   return (
     <div 
       className={`group relative bg-card rounded-xl overflow-hidden shadow-card hover:shadow-hover transition-all duration-300 cursor-pointer ${className}`}
@@ -92,11 +90,9 @@ export const TravelCard = ({
           <span className="text-xs font-semibold text-foreground">{rating}</span>
         </div>
 
-        {/* Level indicator on image - Sin fondo circular de color */}
+        {/* Level indicator on image - Sin fondo, solo el símbolo */}
         <div className="absolute bottom-2 left-2">
-          <div className="flex items-center justify-center w-8 h-8 bg-background/95 backdrop-blur-sm rounded-full shadow-lg">
-            <LevelIcon level={level} />
-          </div>
+          <LevelIcon level={level} />
         </div>
 
         {/* Location Badge (on hover) */}
@@ -122,8 +118,8 @@ export const TravelCard = ({
           />
         </button>
 
-        {/* Title */}
-        <h3 className="font-semibold text-sm leading-tight text-foreground mb-3 group-hover:text-brand-primary transition-colors duration-200 overflow-hidden pr-12" style={{
+        {/* Title - Más grande para 5-6 palabras legibles */}
+        <h3 className="font-semibold text-base leading-tight text-foreground mb-3 group-hover:text-brand-primary transition-colors duration-200 overflow-hidden pr-12" style={{
           display: '-webkit-box',
           WebkitLineClamp: 2,
           WebkitBoxOrient: 'vertical'
@@ -133,25 +129,16 @@ export const TravelCard = ({
 
         {/* Price Row */}
         <div className="flex items-center justify-between pr-12">
-          {/* Left side - Original price and discount */}
-          <div className="flex items-center gap-2">
-            {originalPrice && (
-              <>
-                <span className="text-xs text-muted-foreground line-through">
-                  €{originalPrice}
-                </span>
-                <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-medium">
-                  -{discountPercentage}%
-                </span>
-              </>
-            )}
-          </div>
-
-          {/* Right side - Current price */}
-          <div className="text-right">
-            <span className="text-base font-bold text-brand-primary">
+          {/* Left side - Current price */}
+          <div className="flex items-baseline gap-2">
+            <span className="text-lg font-bold text-brand-primary">
               €{price}
             </span>
+            {originalPrice && (
+              <span className="text-sm text-muted-foreground line-through">
+                €{originalPrice}
+              </span>
+            )}
           </div>
         </div>
       </div>

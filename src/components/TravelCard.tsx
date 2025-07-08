@@ -17,10 +17,26 @@ interface TravelCardProps {
   onClick: () => void;
 }
 
-const levelSymbols = {
-  beginner: "●",
-  intermediate: "●●",
-  advanced: "●●●"
+const LevelIcon = ({ level }: { level: "beginner" | "intermediate" | "advanced" }) => {
+  const bars = {
+    beginner: [true, false, false, false],
+    intermediate: [true, true, false, false], 
+    advanced: [true, true, true, false]
+  };
+
+  return (
+    <div className="flex items-end gap-0.5">
+      {bars[level].map((filled, index) => (
+        <div
+          key={index}
+          className={`w-1 rounded-sm transition-colors ${
+            filled ? 'bg-white' : 'bg-white/30'
+          }`}
+          style={{ height: `${(index + 1) * 3 + 4}px` }}
+        />
+      ))}
+    </div>
+  );
 };
 
 const levelColors = {
@@ -61,11 +77,11 @@ export const TravelCard = ({
       onMouseLeave={() => setShowLocation(false)}
     >
       {/* Image Container */}
-      <div className="relative overflow-hidden aspect-[4/5]">
+      <div className="relative overflow-hidden">
         <img 
           src={image} 
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
         
@@ -100,10 +116,8 @@ export const TravelCard = ({
 
         {/* Level indicator on image */}
         <div className="absolute bottom-2 left-2">
-          <div className={`flex items-center gap-1 rounded-full px-2 py-1 ${levelColors[level]}`}>
-            <span className="text-sm font-bold text-white">
-              {levelSymbols[level]}
-            </span>
+          <div className={`flex items-center justify-center w-8 h-8 rounded-full ${levelColors[level]}`}>
+            <LevelIcon level={level} />
           </div>
         </div>
       </div>

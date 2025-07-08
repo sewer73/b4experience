@@ -132,17 +132,16 @@ export const TravelGrid = ({ searchQuery, onTravelClick }: TravelGridProps) => {
 
   return (
     <div className="w-full">
-      {/* Grid Container - 2 columns on mobile, more on larger screens */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-min">
+      {/* Masonry Grid Container */}
+      <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
         {filteredTravels.map((travel) => (
           <div 
             key={travel.id} 
-            style={{ height: `${travel.height}px` }}
-            className="w-full"
+            className="break-inside-avoid mb-4"
           >
             <TravelCard
               {...travel}
-              className="h-full"
+              className="w-full"
               onClick={() => onTravelClick(travel)}
             />
           </div>

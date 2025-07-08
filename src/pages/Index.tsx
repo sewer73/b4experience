@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { SearchBar } from "@/components/SearchBar";
+import { StickySearchBar } from "@/components/StickySearchBar";
 import { TravelGrid } from "@/components/TravelGrid";
 import { TravelDetail } from "@/components/TravelDetail";
 
@@ -21,7 +22,7 @@ interface Travel {
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTravel, setSelectedTravel] = useState<Travel | null>(null);
-  const [showFilters, setShowFilters] = useState(false);
+  const [showStickySearch, setShowStickySearch] = useState(false);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -35,13 +36,23 @@ const Index = () => {
     setSelectedTravel(null);
   };
 
-  const handleFilterToggle = () => {
-    setShowFilters(!showFilters);
-  };
+  // Detectar scroll para mostrar búsqueda fija
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const searchSectionHeight = 400; // Aproximadamente la altura de la sección de búsqueda
+      
+      setShowStickySearch(scrollPosition > searchSectionHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <StickySearchBar onSearch={handleSearch} isVisible={showStickySearch} />
       
       {selectedTravel ? (
         <TravelDetail travel={selectedTravel} onClose={handleCloseDetail} />
@@ -49,15 +60,8 @@ const Index = () => {
         <main className="container mx-auto px-4 py-8">
           {/* Search Section */}
           <div className="mb-8">
-            <SearchBar onSearch={handleSearch} onFilterToggle={handleFilterToggle} />
+            <SearchBar onSearch={handleSearch} />
           </div>
-
-          {/* Filters Panel (if needed) */}
-          {showFilters && (
-            <div className="mb-6 p-4 bg-adventure-light rounded-lg">
-              <p className="text-sm text-muted-foreground">Filtros próximamente...</p>
-            </div>
-          )}
 
           {/* Travel Grid */}
           <TravelGrid 

@@ -34,6 +34,23 @@ export const Header = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
+            {/* Language Selector */}
+            <div className="flex items-center gap-1 bg-white/10 rounded-full p-1">
+              {["ENG", "ESP", "CAT"].map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => setSelectedLanguage(lang)}
+                  className={`px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                    selectedLanguage === lang
+                      ? "bg-white text-brand-primary"
+                      : "text-white/90 hover:text-white hover:bg-white/20"
+                  }`}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
+
             {/* User Menu */}
             <button className="p-2 rounded-lg hover:bg-white/10 transition-colors">
               <User className="w-5 h-5 text-white" />
@@ -53,33 +70,7 @@ export const Header = () => {
                   </SheetTitle>
                 </SheetHeader>
                 
-                {/* Language Selector */}
-                <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
-                    Idioma / Language
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    {[
-                      { code: "ESP", label: "Español" },
-                      { code: "ENG", label: "English" },
-                      { code: "CAT", label: "Català" }
-                    ].map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => setSelectedLanguage(lang.code)}
-                        className={`flex items-center justify-between p-3 rounded-lg transition-all duration-200 ${
-                          selectedLanguage === lang.code
-                            ? "bg-brand-primary text-white"
-                            : "text-foreground hover:bg-adventure-light"
-                        }`}
-                      >
-                        <span className="font-medium">{lang.label}</span>
-                        <span className="text-sm opacity-70">{lang.code}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
+                
                 {/* Navigation */}
                 <div className="mb-6">
                   <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">

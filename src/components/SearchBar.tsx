@@ -19,24 +19,6 @@ export const SearchBar = ({ onSearch, onFilterToggle }: SearchBarProps) => {
 
   return (
     <div className="w-full relative">
-      {/* Language Selector */}
-      <div className="flex justify-center mb-6">
-        <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1 shadow-sm">
-          {["ENG", "ESP", "CAT"].map((lang) => (
-            <button
-              key={lang}
-              onClick={() => setSelectedLanguage(lang)}
-              className={`px-3 py-1 text-sm font-medium rounded-full transition-all duration-200 ${
-                selectedLanguage === lang
-                  ? "bg-brand-primary text-white shadow-sm"
-                  : "text-muted-foreground hover:text-brand-primary hover:bg-adventure-light"
-              }`}
-            >
-              {lang}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Hero Text with AI */}
       <div className="text-center mb-8">
@@ -50,12 +32,20 @@ export const SearchBar = ({ onSearch, onFilterToggle }: SearchBarProps) => {
 
       {/* AI Search Section */}
       <div className="max-w-2xl mx-auto mb-6">
-        {/* AI Assistant Badge */}
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <div className="flex items-center gap-2 bg-gradient-to-r from-brand-primary/10 to-adventure-accent/20 px-3 py-1 rounded-full border border-brand-primary/20">
-            <span className="text-lg">💬</span>
-            <span className="text-sm font-medium text-brand-primary">Ask our AI travel assistant</span>
-            <Sparkles className="w-4 h-4 text-brand-primary animate-pulse" />
+        {/* AI Chat Section - Layla Style */}
+        <div className="text-center mb-4">
+          <div className="bg-gradient-to-r from-brand-primary/5 to-adventure-accent/10 rounded-2xl p-6 border border-brand-primary/10">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Bot className="w-5 h-5 text-brand-primary" />
+              <span className="text-lg font-semibold text-brand-primary">Planifica tu próxima aventura</span>
+            </div>
+            <p className="text-sm text-muted-foreground mb-3">
+              Cuéntame qué tipo de experiencia buscas y te ayudo a encontrar el viaje perfecto
+            </p>
+            <div className="flex items-center justify-center gap-1 text-xs text-brand-primary/70">
+              <Sparkles className="w-3 h-3" />
+              <span>Asistente IA disponible 24/7</span>
+            </div>
           </div>
         </div>
 
@@ -88,30 +78,6 @@ export const SearchBar = ({ onSearch, onFilterToggle }: SearchBarProps) => {
         </form>
       </div>
 
-      {/* Floating AI Assistant Button */}
-      <div className="relative">
-        <button
-          className="fixed bottom-6 right-6 z-50 bg-brand-primary text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group animate-pulse"
-          onMouseEnter={() => setShowAiTooltip(true)}
-          onMouseLeave={() => setShowAiTooltip(false)}
-          aria-label="Asistente IA disponible 24/7"
-        >
-          <Bot className="w-6 h-6" />
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-adventure-accent rounded-full animate-ping"></div>
-        </button>
-
-        {/* AI Tooltip */}
-        {showAiTooltip && (
-          <div className="fixed bottom-20 right-6 z-50 bg-white border border-border rounded-lg shadow-xl p-3 max-w-xs animate-fade-in">
-            <div className="flex items-center gap-2 mb-2">
-              <Bot className="w-4 h-4 text-brand-primary" />
-              <span className="font-semibold text-brand-primary">¿Te ayudo a planificar tu viaje?</span>
-            </div>
-            <p className="text-sm text-muted-foreground">Disponible 24/7 con IA</p>
-            <div className="absolute bottom-full right-4 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
-          </div>
-        )}
-      </div>
 
       {/* Popular Tags */}
       <div className="mt-6 text-center">

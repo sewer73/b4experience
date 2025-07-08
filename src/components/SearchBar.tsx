@@ -48,17 +48,17 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   return (
     <div className="w-full relative">
-      {/* Hero Text - Mindtrip/Layla Style */}
+      {/* Hero Text - Premium & Minimal */}
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-6xl font-bold text-brand-primary mb-4 tracking-tight">
-          Tu próxima aventura
+          Descubre lo extraordinario
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto">
-          te está esperando
+          Aventuras únicas diseñadas para ti
         </p>
       </div>
 
-      {/* AI Chat Section with Typing Effect */}
+      {/* AI Chat Section with Typing Effect Inside */}
       <div className="max-w-2xl mx-auto mb-6">
         <div className="text-center mb-4">
           <div className="bg-gradient-to-r from-brand-primary/5 to-adventure-accent/10 rounded-2xl p-6 border border-brand-primary/10">

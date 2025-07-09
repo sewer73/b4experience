@@ -89,7 +89,7 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
               aria-label="Buscar viaje con IA"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Busca por destino, actividad o escribe tu pregunta"
+              placeholder={typingText || "¿Dónde quieres ir?"}
               className="w-full pl-16 pr-4 py-4 rounded-2xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-200 shadow-sm hover:shadow-md"
             />
           </div>

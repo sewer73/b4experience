@@ -84,11 +84,6 @@ export const TravelCard = ({
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
-        {/* Rating Badge - Solo rating sin reviews */}
-        <div className="absolute bottom-2 right-2 bg-background/95 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1 shadow-lg">
-          <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-          <span className="text-xs font-semibold text-foreground">{rating}</span>
-        </div>
 
         {/* Level indicator on image - Sin fondo, solo el símbolo */}
         <div className="absolute bottom-2 left-2">
@@ -106,16 +101,17 @@ export const TravelCard = ({
 
       {/* Content */}
       <div className="p-3 relative">
-        {/* Heart Button - Moved to bottom right corner of card */}
+        {/* Heart Button with Save Count */}
         <button
           onClick={handleLike}
-          className="absolute bottom-2 right-2 bg-background/95 backdrop-blur-sm rounded-full p-2 transition-all duration-200 hover:bg-background hover:scale-110 shadow-lg z-10"
+          className="absolute bottom-2 right-2 bg-background/95 backdrop-blur-sm rounded-full px-3 py-2 transition-all duration-200 hover:bg-background hover:scale-110 shadow-lg z-10 flex items-center gap-1"
         >
           <Heart 
             className={`w-4 h-4 transition-colors duration-200 ${
               liked ? "fill-red-500 text-red-500" : "text-muted-foreground hover:text-red-500"
             }`} 
           />
+          <span className="text-xs font-medium text-muted-foreground">({likeCount})</span>
         </button>
 
         {/* Title - Más grande para 5-6 palabras legibles */}

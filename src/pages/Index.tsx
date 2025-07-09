@@ -13,8 +13,8 @@ interface Travel {
   originalPrice?: number;
   rating: number;
   reviewCount: number;
-  level: "beginner" | "intermediate" | "advanced";
   image: string;
+  gifImage?: string;
   likes: number;
   isLiked: boolean;
 }

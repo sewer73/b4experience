@@ -9,37 +9,14 @@ interface TravelCardProps {
   originalPrice?: number;
   rating: number;
   reviewCount: number;
-  level: "beginner" | "intermediate" | "advanced";
   image: string;
+  gifImage?: string;
   likes: number;
   isLiked: boolean;
   className?: string;
   onClick: () => void;
 }
 
-const LevelIcon = ({ level }: { level: "beginner" | "intermediate" | "advanced" }) => {
-  const levelConfig = {
-    beginner: { activeIndex: 0, color: 'bg-green-400' },
-    intermediate: { activeIndex: 1, color: 'bg-yellow-400' },
-    advanced: { activeIndex: 2, color: 'bg-red-400' }
-  };
-
-  const config = levelConfig[level];
-
-  return (
-    <div className="flex items-end gap-0.5">
-      {[0, 1, 2, 3].map((index) => (
-        <div
-          key={index}
-          className={`w-1 rounded-sm transition-colors ${
-            index <= config.activeIndex ? config.color : config.color.replace('400', '400/30')
-          }`}
-          style={{ height: `${(index + 1) * 3 + 4}px` }}
-        />
-      ))}
-    </div>
-  );
-};
 
 export const TravelCard = ({
   title,
@@ -48,8 +25,8 @@ export const TravelCard = ({
   originalPrice,
   rating,
   reviewCount,
-  level,
   image,
+  gifImage,
   likes,
   isLiked,
   className = "",
@@ -58,6 +35,7 @@ export const TravelCard = ({
   const [showLocation, setShowLocation] = useState(false);
   const [liked, setLiked] = useState(isLiked);
   const [likeCount, setLikeCount] = useState(likes);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -69,13 +47,19 @@ export const TravelCard = ({
     <div 
       className={`group relative bg-card rounded-xl overflow-hidden shadow-card hover:shadow-hover transition-all duration-300 cursor-pointer ${className}`}
       onClick={onClick}
-      onMouseEnter={() => setShowLocation(true)}
-      onMouseLeave={() => setShowLocation(false)}
+      onMouseEnter={() => {
+        setShowLocation(true);
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setShowLocation(false);
+        setIsHovered(false);
+      }}
     >
       {/* Image Container */}
       <div className="relative overflow-hidden">
         <img 
-          src={image} 
+          src={isHovered && gifImage ? gifImage : image} 
           alt={title}
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
@@ -85,10 +69,6 @@ export const TravelCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
 
-        {/* Level indicator on image - Sin fondo, solo el símbolo */}
-        <div className="absolute bottom-2 left-2">
-          <LevelIcon level={level} />
-        </div>
 
         {/* Location Badge (on hover) */}
         {showLocation && (

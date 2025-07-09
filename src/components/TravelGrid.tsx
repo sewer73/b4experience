@@ -4,6 +4,10 @@ import lofotenHero from "@/assets/lofoten-hero.jpg";
 import tromsoSki from "@/assets/tromso-ski.jpg";
 import cabinSea from "@/assets/cabin-sea.jpg";
 import selfGuided from "@/assets/self-guided.jpg";
+import lofotenAnimated from "@/assets/lofoten-animated.jpg";
+import tromsoAnimated from "@/assets/tromso-animated.jpg";
+import sailingAnimated from "@/assets/sailing-animated.jpg";
+import hikingAnimated from "@/assets/hiking-animated.jpg";
 
 interface Travel {
   id: string;
@@ -13,8 +17,8 @@ interface Travel {
   originalPrice?: number;
   rating: number;
   reviewCount: number;
-  level: "beginner" | "intermediate" | "advanced";
   image: string;
+  gifImage?: string;
   likes: number;
   isLiked: boolean;
   height: number; // For Pinterest-like layout
@@ -29,8 +33,8 @@ const mockTravels: Travel[] = [
     originalPrice: 2100,
     rating: 4.9,
     reviewCount: 127,
-    level: "intermediate",
     image: lofotenHero,
+    gifImage: lofotenAnimated,
     likes: 234,
     isLiked: false,
     height: 300
@@ -43,8 +47,8 @@ const mockTravels: Travel[] = [
     originalPrice: 2800,
     rating: 4.8,
     reviewCount: 89,
-    level: "advanced",
     image: tromsoSki,
+    gifImage: tromsoAnimated,
     likes: 189,
     isLiked: true,
     height: 400
@@ -56,8 +60,8 @@ const mockTravels: Travel[] = [
     price: 950,
     rating: 4.7,
     reviewCount: 156,
-    level: "beginner",
     image: selfGuided,
+    gifImage: hikingAnimated,
     likes: 167,
     isLiked: false,
     height: 300
@@ -70,8 +74,8 @@ const mockTravels: Travel[] = [
     originalPrice: 2600,
     rating: 4.9,
     reviewCount: 203,
-    level: "advanced",
     image: cabinSea,
+    gifImage: sailingAnimated,
     likes: 298,
     isLiked: false,
     height: 250

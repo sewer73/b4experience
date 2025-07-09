@@ -58,30 +58,15 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
         </p>
       </div>
 
-      {/* AI Chat Section - Destacado */}
+      {/* Enhanced Search Form */}
       <div className="max-w-2xl mx-auto mb-6">
-        <div className="text-center mb-4">
-          <div className="bg-gradient-to-r from-brand-primary/10 to-adventure-accent/15 rounded-2xl p-8 border-2 border-brand-primary/20 shadow-xl">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Bot className="w-6 h-6 text-brand-primary animate-pulse" />
-              <span className="text-xl font-bold text-brand-primary">
-                {typingText}
-                <span className="animate-pulse text-2xl">|</span>
-              </span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-sm text-brand-primary/80">
-              <Sparkles className="w-4 h-4 animate-bounce" />
-              <span className="font-semibold">Asistente IA disponible 24/7</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Enhanced Search Form */}
         <form onSubmit={handleSubmit} className="relative">
           <div className="relative">
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
-              <Search className="text-muted-foreground w-5 h-5" />
               <Bot className="text-brand-primary w-4 h-4 animate-pulse" />
+            </div>
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 animate-bounce text-brand-primary" />
             </div>
             <input
               type="text"
@@ -90,7 +75,7 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={typingText || "¿Dónde quieres ir?"}
-              className="w-full pl-16 pr-4 py-4 rounded-2xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-200 shadow-sm hover:shadow-md"
+              className="w-full pl-12 pr-12 py-4 rounded-2xl border-2 border-brand-primary/30 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-200 shadow-lg hover:shadow-xl"
             />
           </div>
         </form>

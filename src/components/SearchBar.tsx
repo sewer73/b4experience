@@ -48,33 +48,30 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   return (
     <div className="w-full relative">
-      {/* Hero Text - Premium & Minimal */}
+      {/* Hero Text - Clean & Focused */}
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-6xl font-bold text-brand-primary mb-4 tracking-tight">
-          Descubre lo extraordinario
+          B4Experience
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto">
-          Aventuras únicas diseñadas para ti
+        <p className="text-lg md:text-xl text-muted-foreground">
+          Aventuras outdoor premium
         </p>
       </div>
 
-      {/* AI Chat Section with Typing Effect Inside */}
+      {/* AI Chat Section - Destacado */}
       <div className="max-w-2xl mx-auto mb-6">
         <div className="text-center mb-4">
-          <div className="bg-gradient-to-r from-brand-primary/5 to-adventure-accent/10 rounded-2xl p-6 border border-brand-primary/10">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Bot className="w-5 h-5 text-brand-primary" />
-              <span className="text-lg font-semibold text-brand-primary">
+          <div className="bg-gradient-to-r from-brand-primary/10 to-adventure-accent/15 rounded-2xl p-8 border-2 border-brand-primary/20 shadow-xl">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Bot className="w-6 h-6 text-brand-primary animate-pulse" />
+              <span className="text-xl font-bold text-brand-primary">
                 {typingText}
-                <span className="animate-pulse">|</span>
+                <span className="animate-pulse text-2xl">|</span>
               </span>
             </div>
-            <p className="text-sm text-muted-foreground mb-3">
-              Cuéntame qué tipo de experiencia buscas y te ayudo a encontrar el viaje perfecto
-            </p>
-            <div className="flex items-center justify-center gap-1 text-xs text-brand-primary/70">
-              <Sparkles className="w-3 h-3" />
-              <span>Asistente IA disponible 24/7</span>
+            <div className="flex items-center justify-center gap-2 text-sm text-brand-primary/80">
+              <Sparkles className="w-4 h-4 animate-bounce" />
+              <span className="font-semibold">Asistente IA disponible 24/7</span>
             </div>
           </div>
         </div>

@@ -47,87 +47,77 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
   }, [currentPhraseIndex]);
 
   return (
-    <div className="w-full relative overflow-hidden">
-      {/* Vectorized Background Design */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Mountain silhouettes */}
-        <svg className="absolute top-0 left-0 w-full h-full opacity-5" viewBox="0 0 1200 600" fill="none">
-          <path d="M0 400 L200 200 L400 300 L600 150 L800 250 L1000 180 L1200 220 L1200 600 L0 600 Z" 
-                fill="hsl(var(--brand-primary))" />
-          <path d="M0 450 L150 300 L350 380 L550 280 L750 350 L950 300 L1200 320 L1200 600 L0 600 Z" 
-                fill="hsl(var(--adventure-blue))" />
-        </svg>
-        
-        {/* Floating geometric shapes */}
-        <div className="absolute top-20 left-10 w-16 h-16 rotate-12 opacity-10">
-          <svg viewBox="0 0 64 64" fill="none">
-            <polygon points="32,8 56,48 8,48" fill="hsl(var(--adventure-accent))" />
-          </svg>
+    <div className="w-full relative">
+      {/* Hero Section with Distinctive Design */}
+      <div className="text-center mb-12 relative">
+        {/* Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-10 left-1/4 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-20 right-1/4 w-24 h-24 bg-adventure-light/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute top-32 left-1/2 w-16 h-16 bg-brand-primary/20 rounded-full blur-xl animate-pulse delay-500"></div>
         </div>
-        <div className="absolute top-40 right-20 w-12 h-12 rotate-45 opacity-10">
-          <svg viewBox="0 0 48 48" fill="none">
-            <rect width="48" height="48" rx="8" fill="hsl(var(--brand-primary))" />
-          </svg>
-        </div>
-        <div className="absolute bottom-40 left-1/4 w-20 h-20 -rotate-12 opacity-10">
-          <svg viewBox="0 0 80 80" fill="none">
-            <circle cx="40" cy="40" r="40" fill="hsl(var(--adventure-blue))" />
-          </svg>
-        </div>
-        <div className="absolute top-32 right-1/3 w-14 h-14 rotate-30 opacity-10">
-          <svg viewBox="0 0 56 56" fill="none">
-            <path d="M28 4 L52 28 L28 52 L4 28 Z" fill="hsl(var(--adventure-accent))" />
-          </svg>
-        </div>
-        
-        {/* Adventure icons pattern */}
-        <div className="absolute top-24 left-1/3 opacity-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M14 22V20C14 18.8954 13.1046 18 12 18C10.8954 18 10 18.8954 10 20V22M18 8V6C18 4.34315 16.6569 3 15 3H9C7.34315 3 6 4.34315 6 6V8M21 12L3 12M12 15L12 9" 
-                  stroke="hsl(var(--brand-primary))" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <div className="absolute bottom-32 right-1/4 opacity-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" 
-                  stroke="hsl(var(--adventure-blue))" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </div>
-      </div>
 
-      {/* Hero Text - Clean & Focused */}
-      <div className="text-center mb-8 relative z-10">
-        <div className="inline-flex items-center gap-3 mb-4">
-          <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" 
-                    fill="white" />
-            </svg>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-hero bg-clip-text text-transparent tracking-tight">
+        {/* Main Brand Title */}
+        <div className="relative mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-brand-primary via-brand-primary/80 to-adventure-light bg-clip-text text-transparent mb-2 tracking-tight">
             B4Experience
           </h1>
-          <div className="px-3 py-1 bg-adventure-accent/20 rounded-full">
-            <span className="text-xs font-semibold text-brand-primary">PREMIUM</span>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent w-16"></div>
+            <div className="flex items-center gap-2 px-4 py-1 bg-adventure-light/20 rounded-full border border-brand-primary/20">
+              <div className="w-2 h-2 bg-brand-primary rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-brand-primary uppercase tracking-wider">Premium</span>
+              <div className="w-2 h-2 bg-brand-primary rounded-full animate-pulse delay-500"></div>
+            </div>
+            <div className="h-px bg-gradient-to-r from-transparent via-brand-primary to-transparent w-16"></div>
           </div>
         </div>
-        <p className="text-lg md:text-xl text-muted-foreground mb-2">
-          Aventuras outdoor de lujo
-        </p>
-        <p className="text-sm text-muted-foreground/80">
-          Experiencias únicas en los destinos más exclusivos del mundo
-        </p>
+
+        {/* Enhanced Subtitle */}
+        <div className="space-y-2 mb-8">
+          <p className="text-xl md:text-2xl font-semibold text-foreground">
+            Aventuras Outdoor Extraordinarias
+          </p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Descubre experiencias únicas diseñadas para los amantes de la naturaleza y la aventura
+          </p>
+        </div>
+
+        {/* Visual Elements */}
+        <div className="flex items-center justify-center gap-8 mb-8 opacity-60">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-primary to-adventure-light flex items-center justify-center">
+              <span className="text-white text-xs font-bold">⛰️</span>
+            </div>
+            <span className="text-sm text-muted-foreground">Montaña</span>
+          </div>
+          <div className="w-1 h-1 bg-brand-primary rounded-full"></div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-primary to-adventure-light flex items-center justify-center">
+              <span className="text-white text-xs font-bold">🌊</span>
+            </div>
+            <span className="text-sm text-muted-foreground">Mar</span>
+          </div>
+          <div className="w-1 h-1 bg-brand-primary rounded-full"></div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-primary to-adventure-light flex items-center justify-center">
+              <span className="text-white text-xs font-bold">🏔️</span>
+            </div>
+            <span className="text-sm text-muted-foreground">Esquí</span>
+          </div>
+        </div>
       </div>
 
       {/* Enhanced Search Form */}
       <div className="max-w-2xl mx-auto mb-6">
         <form onSubmit={handleSubmit} className="relative">
-          <div className="relative">
+          <div className="relative group">
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
-              <Bot className="text-brand-primary w-4 h-4 animate-pulse" />
+              <Bot className="text-brand-primary w-5 h-5 animate-pulse" />
             </div>
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
               <Sparkles className="w-4 h-4 animate-bounce text-brand-primary" />
+              <Sparkles className="w-3 h-3 animate-bounce text-adventure-light delay-200" />
             </div>
             <input
               type="text"
@@ -136,8 +126,9 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={typingText || "¿Dónde quieres ir?"}
-              className="w-full pl-12 pr-12 py-4 rounded-2xl border-2 border-brand-primary/30 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="w-full pl-14 pr-16 py-5 rounded-2xl border-2 border-brand-primary/30 bg-background/80 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all duration-300 shadow-lg hover:shadow-xl group-hover:shadow-2xl text-lg"
             />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-brand-primary/5 via-transparent to-adventure-light/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </div>
         </form>
       </div>

@@ -9,7 +9,6 @@ interface Travel {
   originalPrice?: number;
   rating: number;
   reviewCount: number;
-  level: "beginner" | "intermediate" | "advanced";
   image: string;
   likes: number;
   isLiked: boolean;
@@ -20,17 +19,6 @@ interface TravelDetailProps {
   onClose: () => void;
 }
 
-const levelLabels = {
-  beginner: "Principiante",
-  intermediate: "Intermedio",
-  advanced: "Avanzado"
-};
-
-const levelColors = {
-  beginner: "bg-level-beginner",
-  intermediate: "bg-level-intermediate",
-  advanced: "bg-level-advanced"
-};
 
 export const TravelDetail = ({ travel, onClose }: TravelDetailProps) => {
   const [liked, setLiked] = useState(travel.isLiked);
@@ -141,11 +129,6 @@ export const TravelDetail = ({ travel, onClose }: TravelDetailProps) => {
               </div>
             </div>
 
-            {/* Level Badge */}
-            <div className="inline-flex items-center gap-2">
-              <div className={`w-3 h-3 rounded-full ${levelColors[travel.level]}`}></div>
-              <span className="text-sm font-medium">{levelLabels[travel.level]}</span>
-            </div>
           </div>
 
           {/* Price */}

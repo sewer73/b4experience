@@ -1,5 +1,6 @@
 import { Search, Bot, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
+import heroAdventureGif from "@/assets/hero-adventure-gif.jpg";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -48,6 +49,17 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   return (
     <div className="w-full relative">
+      {/* Adventure GIF */}
+      <div className="text-center mb-6">
+        <div className="relative inline-block mb-4">
+          <img 
+            src={heroAdventureGif} 
+            alt="Adventure activities" 
+            className="w-32 h-18 md:w-48 md:h-27 rounded-xl shadow-lg object-cover mx-auto"
+          />
+        </div>
+      </div>
+
       {/* Hero Text - Clean & Focused */}
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-6xl font-bold text-brand-primary mb-4 tracking-tight">

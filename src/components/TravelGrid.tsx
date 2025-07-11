@@ -82,12 +82,19 @@ const mockTravels: Travel[] = [
   }
 ];
 
+interface FilterOption {
+  id: string;
+  label: string;
+  category: 'activity' | 'location' | 'duration' | 'group_size' | 'sort';
+}
+
 interface TravelGridProps {
   searchQuery: string;
+  filters: FilterOption[];
   onTravelClick: (travel: Travel) => void;
 }
 
-export const TravelGrid = ({ searchQuery, onTravelClick }: TravelGridProps) => {
+export const TravelGrid = ({ searchQuery, filters, onTravelClick }: TravelGridProps) => {
   const [travels, setTravels] = useState<Travel[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -128,11 +135,44 @@ export const TravelGrid = ({ searchQuery, onTravelClick }: TravelGridProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loadMoreTravels]);
 
-  // Filter travels based on search
-  const filteredTravels = travels.filter(travel =>
-    travel.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    travel.location.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter and sort travels based on search and filters
+  const filteredTravels = travels.filter(travel => {
+    // Search filter
+    const matchesSearch = !searchQuery || 
+      travel.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      travel.location.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    // Apply other filters
+    const activityFilters = filters.filter(f => f.category === 'activity');
+    const locationFilters = filters.filter(f => f.category === 'location');
+    
+    const matchesActivity = activityFilters.length === 0 || 
+      activityFilters.some(filter => 
+        travel.title.toLowerCase().includes(filter.label.toLowerCase())
+      );
+    
+    const matchesLocation = locationFilters.length === 0 || 
+      locationFilters.some(filter => 
+        travel.location.toLowerCase().includes(filter.label.toLowerCase())
+      );
+    
+    return matchesSearch && matchesActivity && matchesLocation;
+  }).sort((a, b) => {
+    // Apply sorting
+    const sortFilter = filters.find(f => f.category === 'sort');
+    if (!sortFilter) return 0;
+    
+    switch (sortFilter.id) {
+      case 'price-low':
+        return a.price - b.price;
+      case 'price-high':
+        return b.price - a.price;
+      case 'rating':
+        return b.rating - a.rating;
+      default:
+        return 0;
+    }
+  });
 
   return (
     <div className="w-full">

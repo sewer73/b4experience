@@ -4,6 +4,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { StickySearchBar } from "@/components/StickySearchBar";
 import { TravelGrid } from "@/components/TravelGrid";
 import { TravelDetail } from "@/components/TravelDetail";
+import { FilterButton } from "@/components/FilterButton";
 
 interface Travel {
   id: string;
@@ -19,13 +20,24 @@ interface Travel {
   isLiked: boolean;
 }
 
+interface FilterOption {
+  id: string;
+  label: string;
+  category: 'activity' | 'location' | 'duration' | 'group_size' | 'sort';
+}
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTravel, setSelectedTravel] = useState<Travel | null>(null);
   const [showStickySearch, setShowStickySearch] = useState(false);
+  const [filters, setFilters] = useState<FilterOption[]>([]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+  };
+
+  const handleFiltersChange = (newFilters: FilterOption[]) => {
+    setFilters(newFilters);
   };
 
   const handleTravelClick = (travel: Travel) => {
@@ -63,9 +75,15 @@ const Index = () => {
             <SearchBar onSearch={handleSearch} />
           </div>
 
+          {/* Filter Section */}
+          <div className="mb-6 flex justify-center">
+            <FilterButton onFiltersChange={handleFiltersChange} />
+          </div>
+
           {/* Travel Grid */}
           <TravelGrid 
-            searchQuery={searchQuery} 
+            searchQuery={searchQuery}
+            filters={filters}
             onTravelClick={handleTravelClick}
           />
         </main>
